@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.softeem.dao.AddressDao">
+
+    <select id="findAll" resultType="com.softeem.pojo.Address">
+        select * from t_address
+    </select>
+    <select id="findPage" resultType="com.softeem.pojo.Address" parameterType="string">
+        select * from t_address
+        <if test="value!=null and value!=''">
+            where addressName like "%"#{value}"%"
+        </if>
+    </select>
+    <select id="findUpdate" resultType="com.softeem.pojo.Address">
+        select *
+        from t_address
+        where id = #{id}
+    </select>
+    <insert id="add" parameterType="com.softeem.pojo.Address">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_address(addressName,telephone,lngAndLat,img,map,detailaddress)
+        values
+        (#{addressName},#{telephone},#{lngAndLat},#{img},#{map},#{detailaddress})
+    </insert>
+    <update id="edit" parameterType="com.softeem.pojo.Address">
+        update t_address
+        <set>
+            <if test="addressName != null">
+                addressName = #{addressName},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <if test="lngAndLat != null">
+                lngAndLat = #{lngAndLat},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="map != null">
+                map = #{map},
+            </if>
+            <if test="detailaddress != null">
+                detailaddress = #{detailaddress},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="int">
+        delete from t_address where id = #{id}
+    </delete>
+</mapper>

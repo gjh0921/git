@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.crm.mapper.CustomerLinkmanMapper">
+
+    <resultMap id="BaseResultMap" type="com.softeem.crm.pojo.CustomerLinkman">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="cusId" column="cus_id" jdbcType="INTEGER"/>
+            <result property="linkName" column="link_name" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="VARCHAR"/>
+            <result property="zhiwei" column="zhiwei" jdbcType="VARCHAR"/>
+            <result property="officePhone" column="office_phone" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="isValid" column="is_valid" jdbcType="INTEGER"/>
+            <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+            <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,cus_id,link_name,
+        sex,zhiwei,office_phone,
+        phone,is_valid,create_date,
+        update_date
+    </sql>
+</mapper>

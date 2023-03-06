@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${customerLinkman?.id}"/>
+    <input name="cusId" type="hidden" th:value="${cid}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人姓名</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userName"
+                   lay-verify="required" name="linkName" id="linkName" th:value="${customerLinkman?.linkName}"
+                   placeholder="请输入联系人姓名">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人性别</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="sex" th:value="${customerLinkman?.sex}"
+                   id="sex" placeholder="请输入联系人性别">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人职位</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="zhiwei" th:value="${customerLinkman?.zhiwei}"
+                   id="zhiwei" placeholder="请输入联系人职位">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人办公电话</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="officePhone" th:value="${customerLinkman?.officePhone}"
+                   id="officePhone" placeholder="请输入联系人办公电话">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">联系人办公电话</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="phone" th:value="${customerLinkman?.phone}"
+                   id="phone" placeholder="请输入联系人联系电话">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit="" lay-filter="addOrUpdateCusLinkman">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/customerLinkman/add.update.js}"></script>
+
+</body>
+</html>

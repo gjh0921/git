@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.crm.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.softeem.crm.pojo.Role">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="roleRemark" column="role_remark" jdbcType="VARCHAR"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="isValid" column="is_valid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,role_name,role_remark,
+        create_date,update_date,is_valid
+    </sql>
+    <select id="queryAllRoles" parameterType="int" resultType="java.util.Map">
+        SELECT r2.id,
+               r2.role_name AS roleName,
+               CASE
+                   WHEN IFNULL(t_temp.id, 0) = 0 THEN
+                       ""
+                   ELSE
+                       "selected"
+                   END      AS "selected"
+        FROM t_role r2
+                 LEFT JOIN (
+            SELECT r1.id
+            FROM t_role r1
+                     LEFT JOIN t_user_role ur ON r1.id = ur.role_id
+            WHERE ur.user_id = #{userId}
+        ) t_temp ON r2.id = t_temp.id
+        where r2.is_valid = 0
+    </select>
+</mapper>

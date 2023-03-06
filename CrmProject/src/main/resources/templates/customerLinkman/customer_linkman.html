@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>客户订单查看</title>
+    <th:block th:include="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form">
+                <input name="id" type="hidden" th:value="${customer?.id}"/>
+                <div class="layui-form-item layui-row">
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">客户名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input"
+                                   name="name" id="name" th:value="${customer?.name}" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">法人</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input"
+                                   name="fr" id="fr" th:value="${customer?.fr}" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-row">
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">客户地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input"
+                                   name="address" th:value="${customer?.address}" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">联系电话</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input"
+                                   name="phone" th:value="${customer?.phone}" id="phone" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="layui-col-md12">
+    <table id="cusLinkmanList" class="layui-table" lay-filter="cusLinkman"></table>
+</div>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-normal addNews_btn" lay-event="add">
+            <i class="layui-icon">&#xe608;</i>
+            添加联系人
+        </a>
+        <a class="layui-btn layui-btn-normal layui-btn-danger" lay-event="del"><i class="layui-icon"></i>删除</a>
+    </div>
+</script>
+
+<!--操作-->
+<script id="cusLinkmanBar" type="text/html">
+    <a class="layui-btn layui-btn-xs" id="edit" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+<script type="text/javascript" th:src="@{/js/customerLinkman/customer.linkman.js}"></script>
+</body>
+</html>

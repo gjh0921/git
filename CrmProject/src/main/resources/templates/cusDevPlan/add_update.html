@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:include="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${cusDevPlan?.id}"/>
+    <input name="saleChanceId" type="hidden" th:value="${sid}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">计划项内容</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userName"
+                   lay-verify="required" name="planItem" id="planItem" th:value="${cusDevPlan?.planItem}"
+                   placeholder="请输入计划项内容">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">计划时间</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userName"
+                   lay-verify="required" name="planDate" id="planDate"
+                   th:value="${#dates.format(cusDevPlan?.planDate,'yyyy-MM-dd HH:mm:ss')}"
+                   placeholder="请输入计划项时间">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">执行效果</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="exeAffect" th:value="${cusDevPlan?.exeAffect}"
+                   id="exeAffect" placeholder="请输入执行效果">
+        </div>
+    </div>
+    <br/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit=""
+                    lay-filter="addOrUpdateCusDevPlan">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/cusDevPlan/add.update.js}"></script>
+</body>
+</html>
+<script>
+    layui.use(['laydate'], function () {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#planDate'
+            , trigger: 'click'
+            , format: 'yyyy-MM-dd HH:mm:ss'
+            , type: 'datetime'
+        });
+    })
+</script>

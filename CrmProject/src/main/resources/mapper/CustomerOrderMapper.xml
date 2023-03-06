@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.crm.mapper.CustomerOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.softeem.crm.pojo.CustomerOrder">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="cusId" column="cus_id" jdbcType="INTEGER"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+        <result property="createDate" column="create_date" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="isValid" column="is_valid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,cus_id,order_no,
+        order_date,address,state,
+        create_date,update_date,is_valid
+    </sql>
+    <select id="queryOrderDetailByOrderId" resultType="com.softeem.crm.vo.CustomerOrderVo">
+        select *, (select sum(sum) as total from t_order_details where order_id = #{orderId}) as total
+        from t_customer_order
+        where id = #{orderId};
+    </select>
+</mapper>

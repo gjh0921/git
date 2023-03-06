@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${customerContcat?.id}"/>
+    <input name="cusId" type="hidden" th:value="${cid}"/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">交往事件</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userName"
+                   lay-verify="required" name="overview" id="overview" th:value="${customerContcat?.overview}"
+                   placeholder="请输入交往事件">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">交往地址</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="address" th:value="${customerContcat?.address}"
+                   id="address" placeholder="请输入交往地址">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">交往时间</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input userEmail"
+                   lay-verify="required" name="contactTime" th:value="${#dates.format(customerContcat?.contactTime, 'yyyy-MM-dd HH:mm:ss')}"
+                   id="contactTime" placeholder="请输入交往时间">
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit="" lay-filter="addOrUpdateCusContcat">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+
+</form>
+<script type="text/javascript" th:src="@{/js/customerContcat/add.update.js}"></script>
+
+</body>
+</html>
+<script>
+    layui.use(['laydate'], function (){
+        var laydate=layui.laydate;
+        laydate.render({
+            elem: '#contactTime'
+            ,trigger: 'click'
+            ,format: 'yyyy-MM-dd HH:mm:ss'
+            ,type: 'datetime'
+        });
+    })
+</script>

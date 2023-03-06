@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="common::common"></th:block>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+    <input name="id" type="hidden" th:value="${customerServer?.id}"/>
+    <input name="state" type="hidden" value="fw_004"/>
+    <input name="man" type="hidden" th:value="${customerServer?.assigner}"/>
+    <div class="layui-form-item layui-row">
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">服务类型</label>
+            <div class="layui-input-block">
+                <select name="serveType" id="serveType" disabled="disabled">
+                    <option value="">请选择</option>
+                    <option value="6" th:selected="${customerServer.serveType=='6'}">咨询
+                    </option>
+                    <option value="8" th:selected="${customerServer.serveType=='8'}">投诉
+                    </option>
+                    <option value="7" th:selected="${customerServer.serveType=='7'}">建议
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">客户</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input"
+                       lay-verify="required" name="customer" id="customer" th:value="${customerServer?.customer}"
+                       readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row">
+        <label class="layui-form-label">服务内容</label>
+        <div class="layui-input-block">
+            <textarea name="serviceRequest" class="layui-textarea" readonly="readonly">[[${customerServer.serviceRequest}]]</textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row">
+        <label class="layui-form-label">服务概要</label>
+        <div class="layui-input-block">
+            <textarea name="overview" class="layui-textarea"
+                      readonly="readonly">[[${customerServer.overview}]]</textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-row">
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">指派给</label>
+            <div class="layui-input-block">
+                <select name="assigner" id="assigner" disabled="disabled">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">指派时间</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input"
+                       lay-verify="required" name="assignTime" id="assignTime"
+                       th:value="${#dates.format(customerServer?.assignTime, 'yyyy-MM-dd HH:mm:ss')}"
+                       readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row">
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">处理内容</label>
+            <div class="layui-input-block">
+                <textarea name="serviceProce" class="layui-textarea"
+                          readonly="readonly">[[${customerServer.serviceProce}]]</textarea>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">处理时间</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input"
+                       name="serviceProceTime" id="serviceProceTime"
+                       th:value="${#dates.format(customerServer?.serviceProceTime, 'yyyy-MM-dd HH:mm:ss')}"
+                       readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-row">
+        <!--<div class="layui-col-xs6">
+            <label class="layui-form-label">处理结果</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input"
+                       name="serviceProceResult" id="serviceProceResult">
+            </div>
+        </div>-->
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">处理结果</label>
+            <div class="layui-input-block">
+                <select id="serviceProceResult" name="serviceProceResult">
+                    <option value="">请选择</option>
+                    <option value="非常不满意">非常不满意</option>
+                    <option value="不满意">不满意</option>
+                    <option value="基本满意">基本满意</option>
+                    <option value="满意">满意</option>
+                    <option value="非常满意">非常满意</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-col-xs6">
+            <label class="layui-form-label">满意度</label>
+            <div class="layui-input-block">
+                <select id="myd" name="myd">
+                    <option value="">请选择</option>
+                    <option value="☆">☆</option>
+                    <option value="☆☆">☆☆</option>
+                    <option value="☆☆☆">☆☆☆</option>
+                    <option value="☆☆☆☆">☆☆☆☆</option>
+                    <option value="☆☆☆☆☆">☆☆☆☆☆</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <br/>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-lg" lay-submit=""
+                    lay-filter="addOrUpdateCustomerServe">确认
+            </button>
+            <button class="layui-btn layui-btn-lg layui-btn-normal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/js/customerServer/customer.server.feed.back.add.js}"></script>
+</body>
+</html>

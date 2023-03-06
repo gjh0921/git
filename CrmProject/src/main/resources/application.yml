@@ -1,0 +1,56 @@
+## 端口号  上下文路径
+server:
+  port: 9898
+  servlet:
+    context-path: /crm  #项目名
+
+## 数据源配置
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/crm?serverTimezone=UTC
+    username: root
+    password: root123
+
+  ## freemarker
+    ## freemarker:
+    ##  suffix: .ftl
+    ##  content-type: text/html
+    ## charset: UTF-8
+    ## template-loader-path: classpath:/views/
+
+  ## 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    enabled: true
+    encoding: utf-8
+    excluded-view-names:
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+## mybatis 配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+## type-aliases-package: com.softeem.crm.vo;com.softeem.crm.query;com.softeem.crm.dto
+  configuration:
+##    map-underscore-to-camel-case: true #开启驼峰
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+## pageHelper
+  ## pagehelper:
+  ## helper-dialect: mysql
+
+## 设置 dao 日志打印级别
+  ##logging:
+    ## level:
+      ##   com:
+      ##   softeem:
+      ##    crm:
+    ##     dao: debug
